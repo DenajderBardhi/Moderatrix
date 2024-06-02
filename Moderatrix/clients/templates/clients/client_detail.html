@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Detail</title>
+</head>
+<body>
+    <h1>{{ client.name }}</h1>
+    <p>Email: {{ client.email }}</p>
+    <p>Phone: {{ client.phone }}</p>
+    <p>Address: {{ client.address }}</p>
+    <h2>Projects</h2>
+    <ul>
+        {% for project in projects %}
+            <li>{{ project.project_name }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'client_update' client.pk %}">Edit</a>
+    <form method="post" action="{% url 'client_delete' client.pk %}">
+        {% csrf_token %}
+        <button type="submit">Delete</button>
+    </form>
+    <a href="{% url 'client_list' %}">Back to Client List</a>
+</body>
+</html>
